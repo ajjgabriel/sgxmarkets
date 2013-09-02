@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+  	<title>{{ title }}</title>
+    <link type="text/css" rel="stylesheet" href="/css/main.css" media="screen" />
+    <link rel="stylesheet" href="/js/sidr-package-1.1.1/stylesheets/jquery.sidr.dark.css">
+    <link rel="stylesheet" href="/css/demo_table.css">
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="/js/util.js" type="text/javascript"></script>
+    <script src="/js/sidr-package-1.1.1/jquery.sidr.min.js" type="text/javascript"></script>
+    <script src="/js/dataGrid/jquery.dataTables.js" type="text/javascript"></script>
+    <script src="/js/dataGrid/shCore.js" type="text/javascript"></script>
+  <!-- Main Frame -->
+   <a id="simple-menu" href="#sidr">Toogle Announcement </a>
+   <h2>Latest Announcement</h2>
+   
+   
+ 
+<div id="sidr">
+  <h2 align="left">{{ title }}</h2>
+  <ul>
+    <li>
+      {{ stocksDropDown }}
+    </li>
+    <li class="active"><a href="#Announcements">Announcements</a>
+      {{ announcements }}
+    <ul>
+    <li><a href="/announcements">Fundamentals</a></li>
+    </ul>
+    </li>
+    <li><a href="#">Charts</a></li>
+  </ul>
+</div>
+ 
+<script>
+function announcements()
+{
+  $.get("/announcements?HPCode="+ getSelectedText('stockDropDown'), function(data) {
+   var mydata = jQuery.parseJSON( data );
+   $('#announcementTable').dataTable().fnClearTable()   
+   alert(data);
+   for(var i=0;i<mydata.items.length-1;i++)
+   {
+      
+       $('#announcementTable').dataTable().fnAddData( [
+         mydata.items[i].key,
+         mydata.items[i].Time,
+         mydata.items[i].Company,
+         mydata.items[i].AnnType,
+         mydata.items[i].AnnTitle] );
+   }
+   
+  });
+  
+}
+
+function getSelectedText(elementId) {
+    var elt = document.getElementById(elementId);
+
+    if (elt.selectedIndex == -1)
+        return null;
+
+    return elt.options[elt.selectedIndex].text;
+}
+
+
+
+$(document).ready(function() {
+  $('#simple-menu').sidr();
+});
+
+$(document).ready(function() {
+  var aTable = $('#announcementTable').dataTable();
+  aTable.fnSetColumnVis( 0,false );
+} );
+</script>
+  </head>                                                                                     
+  <body>
+  <table cellpadding="0" cellspacing="0" border="0" class="display" id="announcementTable" width="100%">
+	<thead>
+		<tr>
+      <th>Key</th>
+			<th>Time</th>
+			<th>Company</th>
+			<th>Type</th>
+			<th>Title</th>
+		</tr>
+	</thead>
+	<tbody>
+		
+  </tbody> 
+  </table>
+  </body>
+</html>
