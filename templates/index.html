@@ -4,6 +4,7 @@
   <head>
   	<title>{{ title }}</title>
     <link type="text/css" rel="stylesheet" href="/css/main.css" media="screen" />
+    <link rel="stylesheet" href="/css/perfectWidth/style.css">
     <link rel="stylesheet" href="/js/sidr-package-1.1.1/stylesheets/jquery.sidr.dark.css">
     <link rel="stylesheet" href="/css/demo_table.css">
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
@@ -11,9 +12,17 @@
     <script src="/js/sidr-package-1.1.1/jquery.sidr.min.js" type="text/javascript"></script>
     <script src="/js/dataGrid/jquery.dataTables.js" type="text/javascript"></script>
     <script src="/js/dataGrid/shCore.js" type="text/javascript"></script>
+    <script src="/js/YQL/yql.js" type="text/javascript"></script>
+    <script src="/js/sgxmarketsJs/announcements.js" type="text/javascript"></script>
+    <script src="/js/sgxmarketsJs/scroll.js" type="text/javascript"></script>
   <!-- Main Frame -->
-   <a id="simple-menu" href="#sidr">Toogle Announcement </a>
-   <h2>Latest Announcement</h2>
+  <div id ="header">
+    <a id="simple-menu" href="#sidr">
+      <img src="/css/perfectWidth/arrow.png" align="left" alt="Toggle Side Bar">
+    </a>
+  </div>
+   
+  
    
    
  
@@ -23,73 +32,75 @@
     <li>
       {{ stocksDropDown }}
     </li>
-    <li class="active"><a href="#Announcements">Announcements</a>
+    <li class="active"><a id="announcementScroll" href="#">Announcements</a>
       {{ announcements }}
-    <ul>
-    <li><a href="/announcements">Fundamentals</a></li>
-    </ul>
     </li>
-    <li><a href="#">Charts</a></li>
+    <ul>
+      <li><a id="fundamentalScroll" href="#">Fundamentals</a></li>
+    </ul>
+    
+    <li><a href="#">Charts (Under Construction)</a></li>
   </ul>
 </div>
  
 <script>
-function announcements()
-{
-  $.get("/announcements?HPCode="+ getSelectedText('stockDropDown'), function(data) {
-   var mydata = jQuery.parseJSON( data );
-   $('#announcementTable').dataTable().fnClearTable()   
-   alert(data);
-   for(var i=0;i<mydata.items.length-1;i++)
-   {
-      
-       $('#announcementTable').dataTable().fnAddData( [
-         mydata.items[i].key,
-         mydata.items[i].Time,
-         mydata.items[i].Company,
-         mydata.items[i].AnnType,
-         mydata.items[i].AnnTitle] );
-   }
-   
-  });
-  
-}
+
 
 function getSelectedText(elementId) {
     var elt = document.getElementById(elementId);
-
     if (elt.selectedIndex == -1)
+    {
         return null;
-
+    }    
     return elt.options[elt.selectedIndex].text;
 }
 
 
 
+function callYQL()
+{
+  symbol = $('#stockDropDown').val();
+  //Singapore Symbol has a .SI at the back
+  var query = "select * from yahoo.finance.quote where symbol in ('"+symbol+".SI')";
+  YQLQuery(query);
+ 
+}
+
+
 $(document).ready(function() {
   $('#simple-menu').sidr();
+  
 });
 
 $(document).ready(function() {
   var aTable = $('#announcementTable').dataTable();
   aTable.fnSetColumnVis( 0,false );
+  
+  announcements();
+  //callYQL();
 } );
+
+
 </script>
-  </head>                                                                                     
+  </head>  
+                                                                                   
   <body>
+   <h1 id="Announcements">Latest Announcements</h1>
   <table cellpadding="0" cellspacing="0" border="0" class="display" id="announcementTable" width="100%">
-	<thead>
-		<tr>
-      <th>Key</th>
-			<th>Time</th>
-			<th>Company</th>
-			<th>Type</th>
-			<th>Title</th>
-		</tr>
-	</thead>
-	<tbody>
-		
-  </tbody> 
-  </table>
+  	<thead>
+  		<tr>
+        <th>Key</th>
+  			<th>Time</th>
+  			<th>Company</th>
+  			<th>Type</th>
+  			<th>Title</th>
+  		</tr>
+  	</thead>
+ </table>
+  <br/><br/><br/>
+  <h1 id="Fundamentals">Fundamentals</h1>
+  <br/><br/>
+  <div id="FundamentalContents"></div>
+  
   </body>
 </html>
