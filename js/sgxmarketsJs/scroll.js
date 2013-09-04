@@ -19,4 +19,15 @@ $(document).ready(function() {
 		// Stop the link from acting like a normal anchor link
 		return false;
 	});
+ 
+   var chartPosition = jQuery('#Chart').offset().top;
+	
+	// When #scroll is clicked
+	jQuery('#chartScroll').click(function(){
+		// Scroll down to 'catTopPosition'
+		jQuery('html, body').animate({scrollTop:chartPosition}, 'slow');
+		// Stop the link from acting like a normal anchor link
+		return false;
+	});
+
 });
