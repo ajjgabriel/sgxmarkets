@@ -29,7 +29,7 @@ function chart(query)
   }
   function buildChart(jsonArray)
   {
-
+   $('#chart1').empty();
   var plot1 = $.jqplot('chart1', [jsonArray], {
     title:'',
     axes:{
