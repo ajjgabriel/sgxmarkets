@@ -68,6 +68,14 @@ class MainRequestHandler(webapp.RequestHandler):
     
     path = os.path.join(os.path.dirname(__file__), 'templates/index.html')
     self.response.out.write(template.render(path, template_values))
+    
+class FundamentalsRequestHandler(webapp.RequestHandler):
+  def get(self):
+    encodedUrl = urllib.quote(self.request.get("Query"))
+    """ Get Announcement """
+    url = "http://query.yahooapis.com/v1/public/yql?q=" + encodedUrl + "&format=json&&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback="
+    result = urlfetch.fetch(url)
+    self.response.out.write(result.content)
 
 class AnnouncementRequestHandler(webapp.RequestHandler):
   def get(self):
@@ -85,7 +93,8 @@ class AnnouncementRequestHandler(webapp.RequestHandler):
                                                 
 application = webapp.WSGIApplication(
                                      [('/', MainRequestHandler),
-                                      ('/announcements', AnnouncementRequestHandler)],
+                                      ('/announcements', AnnouncementRequestHandler),
+                                      ('/fundamentals', FundamentalsRequestHandler)],
                                      debug=True)
 
 def main():

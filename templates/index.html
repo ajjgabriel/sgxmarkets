@@ -12,7 +12,7 @@
     <script src="/js/sidr-package-1.1.1/jquery.sidr.min.js" type="text/javascript"></script>
     <script src="/js/dataGrid/jquery.dataTables.js" type="text/javascript"></script>
     <script src="/js/dataGrid/shCore.js" type="text/javascript"></script>
-    <script src="/js/YQL/yql.js" type="text/javascript"></script>
+    <script src="/js/sgxmarketsJs/fundamentals.js" type="text/javascript"></script>
     <script src="/js/sgxmarketsJs/announcements.js" type="text/javascript"></script>
     <script src="/js/sgxmarketsJs/scroll.js" type="text/javascript"></script>
      <!-- Chart -->
@@ -61,7 +61,7 @@ function callYQL()
   symbol = $('#stockDropDown').val();
   //Singapore Symbol has a .SI at the back
   var query = "select * from yahoo.finance.quote where symbol in ('"+symbol+".SI')";
-  YQLQuery(query);
+  fundamentals(query);
  
 }
 

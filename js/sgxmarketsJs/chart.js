@@ -41,7 +41,7 @@ function chart(query)
   });
     
   }
- 
+
  
 function getPreviousDay()
 {
