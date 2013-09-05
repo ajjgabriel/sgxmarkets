@@ -15,6 +15,7 @@ function announcements()
          mydata.items[i].AnnTitle] );
    }
    callYQL();
+   callChart(3);
   });
   
 }

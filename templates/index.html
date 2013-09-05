@@ -34,9 +34,9 @@
     <li class="active"><a id="announcementScroll" href="#">Announcements</a>
       {{ announcements }}
     </li>
-    <ul>
-      <li><a id="fundamentalScroll" href="#">Fundamentals</a></li>
-    </ul>
+    
+    <li><a id="fundamentalScroll" href="#">Fundamentals</a></li>
+    
     
     <li><a id="chartScroll" href="#">Charts</a></li>
   </ul>
@@ -76,7 +76,7 @@ $(document).ready(function() {
   aTable.fnSetColumnVis( 0,false );
   
   announcements();
-  chart("select * from yahoo.finance.historicaldata where symbol = \"YHOO\" and startDate = \"2009-09-11\" and endDate = \"2010-03-10\"");
+  
 } );
 
 

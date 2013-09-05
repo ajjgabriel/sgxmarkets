@@ -1,3 +1,13 @@
+function callChart(numberOfMonths)
+{
+  var todayString = getPreviousDay();
+  var previousDayMinusNOM = getPreviousDayMinusNOM(numberOfMonths);
+  
+  symbol = $('#stockDropDown').val();
+  
+  chart("select * from yahoo.finance.historicaldata where symbol = \""+ symbol + ".SI\" and startDate = \""+ previousDayMinusNOM + "\" and endDate = \""+ todayString + "\"");
+}
+
 function chart(query)
 {
  var jsonArray = new Array();
@@ -16,7 +26,7 @@ function chart(query)
       }   
      buildChart(jsonArray);
   });
-  
+  }
   function buildChart(jsonArray)
   {
 
@@ -32,5 +42,65 @@ function chart(query)
     
   }
  
+ 
+function getPreviousDay()
+{
+    var today = new Date();
+  var todayString = "";
+   today.setDate(today.getDate()-1);
+   
+   var getDay = "";
+   var getMonth = "";
+   if(today.getDay() < 10)
+   {
+     getDay = "0" + today.getDay();
+   }
+   else 
+   {
+     getDay =  today.getDay();
+   }
+   
+   if(today.getMonth() < 10)
+   {
+     getMonth = "0" + today.getMonth();
+   }
+   else 
+   {
+      getMonth = today.getMonth();
+   }
+   
+   todayString = today.getFullYear() + "-" + getMonth + "-" +  getDay;
+  
+    return todayString;
+}
 
+function getPreviousDayMinusNOM(numberOfMonths)
+{
+  var previousDayDate = new Date();
+  previousDayDate.setDate(previousDayDate.getDate()-1);
+  previousDayDate.setMonth(previousDayDate.getMonth()- numberOfMonths);
+  
+  var getDay = "";
+   var getMonth = "";
+   if(previousDayDate.getDay() < 10)
+   {
+     getDay = "0" + previousDayDate.getDay();
+   }
+   else 
+   {
+     getDay =  previousDayDate.getDay();
+   }
+   
+   if(previousDayDate.getMonth() < 10)
+   {
+     getMonth = "0" + previousDayDate.getMonth();
+   }
+   else 
+   {
+      getMonth = previousDayDate.getMonth();
+   }
+   
+   previousDayDateString = previousDayDate.getFullYear() + "-" + getMonth + "-" +  getDay;
+   
+   return previousDayDateString;
 }
