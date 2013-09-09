@@ -20,6 +20,17 @@ $(document).ready(function() {
 		return false;
 	});
  
+ var keyPosition = jQuery('#Key').offset().top;
+	
+	// When #scroll is clicked
+	jQuery('#keyScroll').click(function(){
+		// Scroll down to 'catTopPosition'
+		jQuery('html, body').animate({scrollTop:keyPosition}, 'slow');
+		// Stop the link from acting like a normal anchor link
+		return false;
+	});
+
+ 
    var chartPosition = jQuery('#Chart').offset().top;
 	
 	// When #scroll is clicked

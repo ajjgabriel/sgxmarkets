@@ -77,6 +77,14 @@ class FundamentalsRequestHandler(webapp.RequestHandler):
     result = urlfetch.fetch(url)
     self.response.out.write(result.content)
 
+class KeyRequestHandler(webapp.RequestHandler):
+  def get(self):
+    encodedUrl = urllib.quote(self.request.get("Query"))
+    """ Get Announcement """
+    url = "http://query.yahooapis.com/v1/public/yql?q=" + encodedUrl + "&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback="
+    result = urlfetch.fetch(url)
+    self.response.out.write(result.content)
+
 class AnnouncementRequestHandler(webapp.RequestHandler):
   def get(self):
     encodedUrl = urllib.quote(self.request.get("HPCode"))
@@ -94,7 +102,8 @@ class AnnouncementRequestHandler(webapp.RequestHandler):
 application = webapp.WSGIApplication(
                                      [('/', MainRequestHandler),
                                       ('/announcements', AnnouncementRequestHandler),
-                                      ('/fundamentals', FundamentalsRequestHandler)],
+                                      ('/fundamentals', FundamentalsRequestHandler),
+                                       ('/Key', KeyRequestHandler)],
                                      debug=True)
 
 def main():

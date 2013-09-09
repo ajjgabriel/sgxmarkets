@@ -15,6 +15,7 @@ function announcements()
          mydata.items[i].AnnTitle] );
    }
    callYQL();
+   callKey();
    callChart(3);
   });
   
