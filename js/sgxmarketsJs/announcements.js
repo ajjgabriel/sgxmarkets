@@ -9,6 +9,7 @@ function announcements()
       
        $('#announcementTable').dataTable().fnAddData( [
          mydata.items[i].key,
+         mydata.items[i].Date,
          mydata.items[i].Time,
          mydata.items[i].Company,
          mydata.items[i].AnnType,
