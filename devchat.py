@@ -62,10 +62,14 @@ class MainRequestHandler(webapp.RequestHandler):
       stockDropDown = stockDropDown + "</option>"
     stockDropDown = stockDropDown + "</select>"
     
+    monthDropDown = "<select id=\"monthDropDown\"  onchange=\"announcements()\"><option value=\"1\">1 Month</option><option value=\"3\">3 Months</option>"
+    monthDropDown = monthDropDown + "<option value=\"6\">6 Months</option><option value=\"12\">1 Year</option></select>"
+
     template_values = {}
     template_values['title'] = "SGX Markets"
     template_values['stocksDropDown'] = stockDropDown
-    
+    template_values['monthDropDown'] = monthDropDown    
+
     path = os.path.join(os.path.dirname(__file__), 'templates/index.html')
     self.response.out.write(template.render(path, template_values))
     

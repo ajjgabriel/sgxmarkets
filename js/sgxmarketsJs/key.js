@@ -16,7 +16,7 @@ function key(query)
     
          strKey = "<table align=\"center\"  width=\"100%\">";
          strKey = strKey + "<tr><th>Market Cap:</th><th>" + mydata.query.results.stats.MarketCap.content  + "</th><tr>";
-          strKey = strKey + "<tr><th>Enterprise Value:</th><th>" + mydata.query.results.stats.EnterpriseValue.content + "</th><tr>";
+         strKey = strKey + "<tr><th>Enterprise Value:</th><th>" + mydata.query.results.stats.EnterpriseValue.content + "</th><tr>";
          strKey = strKey + "<tr><th>Trailing PE:</th><th>" + mydata.query.results.stats.TrailingPE.content + "</th><tr>";
          strKey = strKey + "<tr><th>Forward PE:</th><th>" + mydata.query.results.stats.ForwardPE.content + "</th><tr>";
          strKey = strKey + "<tr><th>REG Ratio:</th><th>" + mydata.query.results.stats.PEGRatio.content + "</th><tr>";

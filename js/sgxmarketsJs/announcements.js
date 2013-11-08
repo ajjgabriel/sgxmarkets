@@ -17,7 +17,9 @@ function announcements()
    }
    callYQL();
    callKey();
-   callChart(3);
+   //callChart(3);
+   //alert(getSelectedText('monthDropDown'));
+   callChart(document.getElementById("monthDropDown").value);
   });
   
 }
