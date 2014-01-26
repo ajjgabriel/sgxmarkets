@@ -1,6 +1,6 @@
 function announcements()
 {
-  $.get("/announcements?HPCode="+ getSelectedText('stockDropDown'), function(data) {
+  $.get("/announcements?StockName="+ getSelectedText('stockDropDown'), function(data) {
    var mydata = jQuery.parseJSON( data );
    $('#announcementTable').dataTable().fnClearTable()   
     
@@ -17,8 +17,6 @@ function announcements()
    }
    callYQL();
    callKey();
-   //callChart(3);
-   //alert(getSelectedText('monthDropDown'));
    callChart(document.getElementById("monthDropDown").value);
   });
   

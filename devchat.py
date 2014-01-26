@@ -56,6 +56,7 @@ class MainRequestHandler(webapp.RequestHandler):
       stockDropDown = stockDropDown + "<option value=\""  
       for i in  loadResult['items'][counter]['HP Code']:
         stockDropDown = stockDropDown + i 
+        
       stockDropDown = stockDropDown + "\">"
       for i in  loadResult['items'][counter]['Stock Name']:
         stockDropDown = stockDropDown + i
@@ -91,17 +92,18 @@ class KeyRequestHandler(webapp.RequestHandler):
 
 class AnnouncementRequestHandler(webapp.RequestHandler):
   def get(self):
-    encodedUrl = urllib.quote(self.request.get("HPCode"))
+    encodedUrl = urllib.quote(self.request.get("StockName"))
     """ Get Announcement """
-    url = "http://info.sgx.com/webcorannc.nsf/AnnouncementLast3MonthsByCompanyNameAndCategory?openview&restricttocategory="+encodedUrl+"&count=20"
+    url = "http://sgx.com/proxy/SgxDominoHttpProxy?timeout=100&dominoHost=http%3A%2F%2Finfofeed.sgx.com%2FApps%3FA%3DCOW_CorporateAnnouncement_Content%26B%3DAnnouncementLast3MonthsByCompanyNameAndCategory%26R_C%3D" + encodedUrl + "%26C_T%3D20"
     result = urlfetch.fetch(url)
     jsonResult = json.dumps(result.content).replace("\\n", "").replace("\\t","").replace("\\","").replace("\'","")
     
-    aDropDown = jsonResult[1:-1]
-    if aDropDown.find('No documents found') < 0:
-      self.response.out.write(aDropDown)
+    announcementTable = jsonResult[5:-1]
+    
+    if announcementTable.find('No documents found') < 0:
+      self.response.out.write(announcementTable)
     else:
-      self.response.out.write(aDropDown)
+      self.response.out.write(announcementTable)
                                                 
 application = webapp.WSGIApplication(
                                      [('/', MainRequestHandler),
