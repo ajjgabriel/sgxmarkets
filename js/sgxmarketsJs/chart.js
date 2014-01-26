@@ -19,7 +19,6 @@ function chart(query)
      jsonArray = new Array();
      for (var key in data.query.results.quote)
       {
-      alert(data.query.results.quote[key].Date);
                jsonArray[key] =  ["'" + data.query.results.quote[key].Date + "'", parseFloat(data.query.results.quote[key].Close)];
 
       }   
