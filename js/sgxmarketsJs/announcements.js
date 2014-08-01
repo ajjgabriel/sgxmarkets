@@ -1,6 +1,7 @@
 function announcements()
 {
   $.get("/announcements?StockName="+ getSelectedText('stockDropDown'), function(data) {
+  
    var mydata = jQuery.parseJSON( data );
    $('#announcementTable').dataTable().fnClearTable()   
     
@@ -11,7 +12,7 @@ function announcements()
          mydata.items[i].key,
          mydata.items[i].Date,
          mydata.items[i].Time,
-         mydata.items[i].Company,
+         mydata.items[i].IssuerName,
          mydata.items[i].AnnType,
          mydata.items[i].AnnTitle] );
    }

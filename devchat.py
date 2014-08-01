@@ -22,24 +22,11 @@ from array import *
 # Set the debug level
 _DEBUG = True
 
-class GreetingUser(db.Model):
-  greeting_user = db.UserProperty()
-  joined = db.DateTimeProperty(auto_now_add=True)
-  picture = db.StringProperty()
-  seated = db.StringProperty()
-  website = db.StringProperty()
-  
-class Greeting(db.Model):
-  author = db.UserProperty()
-  content = db.StringProperty(multiline=True)
-  date = db.DateTimeProperty(auto_now_add=True)
-
-
-    
 class MainRequestHandler(webapp.RequestHandler):
   def get(self):
     
-    url = "http://sgx.com/proxy/SgxDominoHttpProxy?timeout=3600&dominoHost=http%3A%2F%2Finfofeed.sgx.com%2FApps%3FA%3DCOW_App_DB%26B%3Dstockchart%26C_T%3D-1"
+
+    url = "http://sgx.com/proxy/SgxDominoHttpProxy?timeout=3600&dominoHost=http%3A%2F%2Finfofeed.sgx.com%2FApps%3FA%3DCOW_App_DB%26B%3Dstockchart%26C_T%3D-1"
     result = urlfetch.fetch(url)
     data = json.dumps(result.content).replace("\\n", "").replace("\\t","").replace("\\","").replace("\'","")
     data = data[5:-1]
@@ -94,7 +81,7 @@ class AnnouncementRequestHandler(webapp.RequestHandler):
   def get(self):
     encodedUrl = urllib.quote(self.request.get("StockName"))
     """ Get Announcement """
-    url = "http://sgx.com/proxy/SgxDominoHttpProxy?timeout=100&dominoHost=http%3A%2F%2Finfofeed.sgx.com%2FApps%3FA%3DCOW_CorporateAnnouncement_Content%26B%3DAnnouncementLast3MonthsByCompanyNameAndCategory%26R_C%3D" + encodedUrl + "%26C_T%3D20"
+    url = "http://sgx.com/proxy/SgxDominoHttpProxy?timeout=60&dominoHost=http%3A%2F%2Finfofeed.sgx.com%2FApps%3FA%3DCOW_CorpAnnouncement_Content%26B%3DAnnouncementByCompanyName%26R_C%3D" + encodedUrl + "%26C_T%3D5"
     result = urlfetch.fetch(url)
     jsonResult = json.dumps(result.content).replace("\\n", "").replace("\\t","").replace("\\","").replace("\'","")
     
