@@ -40,7 +40,7 @@ class MainRequestHandler(webapp.RequestHandler):
     #stockDropDown
     stockDropDown = "<select id=\"stockDropDown\" onchange=\"announcements()\">"
     for counter in range(0, x):
-      stockDropDown = stockDropDown + "<option value=\""  
+      stockDropDown = stockDropDown + "<option  style=\"color: black;\" value=\""  
       for i in  loadResult['items'][counter]['HP Code']:
         stockDropDown = stockDropDown + i 
         
@@ -50,8 +50,8 @@ class MainRequestHandler(webapp.RequestHandler):
       stockDropDown = stockDropDown + "</option>"
     stockDropDown = stockDropDown + "</select>"
     
-    monthDropDown = "<select id=\"monthDropDown\"  onchange=\"announcements()\"><option value=\"1\">1 Month</option><option value=\"3\">3 Months</option>"
-    monthDropDown = monthDropDown + "<option value=\"6\">6 Months</option><option value=\"12\">1 Year</option></select>"
+    monthDropDown = "<select id=\"monthDropDown\"  onchange=\"announcements()\"><option  style=\"color: black;\" value=\"1\">1 Month</option><option  style=\"color: black;\" value=\"3\">3 Months</option>"
+    monthDropDown = monthDropDown + "<option  style=\"color: black;\" value=\"6\">6 Months</option><option  style=\"color: black;\" value=\"12\">1 Year</option></select>"
 
     template_values = {}
     template_values['title'] = "SGX Markets"
