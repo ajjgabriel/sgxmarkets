@@ -70,6 +70,7 @@ function callYQL()
 }
 
 $(document).ready(function() {
+  $('#overlay').show();
   $('#simple-menu').sidr();
   
 });
@@ -81,6 +82,10 @@ $(document).ready(function() {
   announcements();
   
 } );
+
+$(document).click(function(e) {
+    $("#overlay").hide();
+});
 
 
 </script>
@@ -118,9 +123,13 @@ $(document).ready(function() {
   <div id="chart1"></div>
  
   <div id ="header">
-    <a id="simple-menu" href="#sidr" style="position:fixed; right:0px; top:0px;">
+    <a id="simple-menu" href="#sidr" style="position:fixed; right:0px; top:25px;">
       <img src="/css/perfectWidth/arrow.png" alt="Toggle Side Bar"/>
     </a>
+  </div>
+  <div class="overlay" id="overlay" style="display:none;">
+     <img src="/overlay/Login-Arrow-W-Text.png" style="position: fixed;right:30px; top:0px;" alt="Click Me To Start"/>
+     <img src="/css/perfectWidth/arrow.png" style="position:fixed; right:0px; top:25px;"  alt="Arrow" >
   </div>
   
   </body>

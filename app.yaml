@@ -8,5 +8,7 @@ handlers:
   static_dir: css
 - url: /js
   static_dir: js
+- url: /overlay
+  static_dir: overlay
 - url: /.*
   script: devchat.py

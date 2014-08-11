@@ -13,6 +13,16 @@ a{
 	color:#0033cc;
 }
 
+.overlay{
+    background-color:rgba(0, 0, 0, 0.5);
+    position:fixed;
+    top:0px;
+    bottom:0px;
+    left:0px;
+    right:0px;
+    z-index:100;
+}
+
 /* Wrapper for chat box & form */
 .wrapper{
 	text-align:left;
