@@ -17,7 +17,7 @@ function announcements()
          mydata.items[i].AnnTitle] );
    }
    callYQL();
-   callKey();
+   //callKey();
    callChart(document.getElementById("monthDropDown").value);
   });
   

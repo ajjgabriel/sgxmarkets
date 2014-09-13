@@ -15,6 +15,7 @@ function key(query)
   
     
          strKey = "<table align=\"center\"  width=\"100%\">";
+     if(mydata.query.results.stats != null){
 		 if (mydata.query.results.stats.MarketCap.content != null) {
 			strKey = strKey + "<tr><th>Market Cap:</th><th>" + mydata.query.results.stats.MarketCap.content  + "</th><tr>";
 		 }
@@ -81,7 +82,8 @@ function key(query)
 				 strKey = strKey + "<tr><th>Diluted EPS:</th><th>" + mydata.query.results.stats.DilutedEPS.content + "</th><tr>";
 		}
 		if (mydata.query.results.stats.QtrlyEarningsGrowth.content != null) {
-          strKey = strKey + "<tr><th>Quarterly Earning Growth:</th><th>" + mydata.query.results.stats.QtrlyEarningsGrowth.content + "</th><tr>";		}
+          strKey = strKey + "<tr><th>Quarterly Earning Growth:</th><th>" + mydata.query.results.stats.QtrlyEarningsGrowth.content + "</th><tr>";		
+     }
 		if (mydata.query.results.stats.TotalCash.content != null) {
          strKey = strKey + "<tr><th>Total Cash:</th><th>" + mydata.query.results.stats.TotalCash.content + "</th><tr>";     
 		}
@@ -90,7 +92,7 @@ function key(query)
 		}
 		if (mydata.query.results.stats.TotalDebt.content != null) {
          strKey = strKey + "<tr><th>Total Debt:</th><th>" + mydata.query.results.stats.TotalDebt.content + "</th><tr>";  
-
+  }
 		if (mydata.query.results.stats.TotalDebtEquity.content != null) {
 			strKey = strKey + "<tr><th>Total Debt Equity:</th><th>" + mydata.query.results.stats.TotalDebtEquity.content + "</th><tr>";
 		}
@@ -128,7 +130,7 @@ function key(query)
 		if (mydata.query.results.stats.Ex_DividendDate != null) {
 			strKey = strKey + "<tr><th>Ex Dividend Date:</th><th>" + mydata.query.results.stats.Ex_DividendDate + "</th><tr>";
 		}
-
+  }
          strKey = strKey + "</table>";
 
         

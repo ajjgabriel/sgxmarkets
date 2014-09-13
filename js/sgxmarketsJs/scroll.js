@@ -20,6 +20,7 @@ $(document).ready(function() {
 		return false;
 	});
  
+ /*
  var keyPosition = jQuery('#Key').offset().top;
 	
 	// When #scroll is clicked
@@ -28,7 +29,7 @@ $(document).ready(function() {
 		jQuery('html, body').animate({scrollTop:keyPosition}, 'slow');
 		// Stop the link from acting like a normal anchor link
 		return false;
-	});
+	});*/
 
  
    var chartPosition = jQuery('#Chart').offset().top;
